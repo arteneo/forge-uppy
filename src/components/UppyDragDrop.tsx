@@ -6,7 +6,7 @@ import UppyFileType from "../definitions/UppyFileType";
 import UppyType from "../definitions/UppyType";
 
 interface UppyDragDropProps {
-    inputRef: null | HTMLInputElement;
+    inputRef: React.RefObject<HTMLInputElement>;
     addFiles: (files: UppyFileType[]) => void;
     disabled: boolean;
     uppy: UppyType;
@@ -19,8 +19,8 @@ const UppyDragDrop = ({ inputRef, addFiles, disabled, uppy }: UppyDragDropProps)
     const [draggingOver, setDraggingOver] = React.useState(false);
 
     const onClick = () => {
-        if (inputRef && !disabled) {
-            inputRef.click();
+        if (!disabled && inputRef?.current) {
+            inputRef.current.click();
         }
     };
 

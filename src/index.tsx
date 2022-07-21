@@ -36,9 +36,6 @@ export { UppyType };
 import { default as BaseUpload, BaseUploadProps } from "./fields/BaseUpload";
 export { BaseUpload, BaseUploadProps };
 
-import { default as UploadFile, UploadFileProps } from "./fields/UploadFile";
-export { UploadFile, UploadFileProps };
-
 import { default as UploadSingleFile, UploadSingleFileProps } from "./fields/UploadSingleFile";
 export { UploadSingleFile, UploadSingleFileProps };
 // < fields

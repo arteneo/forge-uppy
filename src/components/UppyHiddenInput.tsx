@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import UppyType from "../definitions/UppyType";
 
 interface UppyHiddenInputProps {
-    inputRef: React.Ref<HTMLInputElement>;
+    inputRef: React.RefObject<HTMLInputElement>;
     onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
     uppy: UppyType;
     required: boolean;

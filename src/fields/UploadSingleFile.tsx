@@ -1,59 +1,56 @@
 import React from "react";
-import * as Yup from "yup";
-import Uppy, { UploadResult } from "@uppy/core";
-import Tus from "@uppy/tus";
-import toArray from "@uppy/utils/lib/toArray";
-import { FormikValues, FormikProps, useFormikContext, getIn } from "formik";
-import { Box, LinearProgress, TextField as MuiTextField, TextFieldProps } from "@mui/material";
-import { useUppy } from "@uppy/react";
-import { FieldPlaceholderInterface, Text, TextProps, useForm } from "@arteneo/forge";
+import { Box } from "@mui/material";
+import BaseUpload, { BaseUploadProps } from "../fields/BaseUpload";
 import UppyProgress from "../components/UppyProgress";
 import UppyPrettyInput from "../components/UppyPrettyInput";
-import UppyDragDrop from "../components/UppyDragDrop";
-import UppyDragDropThumbnail from "../components/UppyDragDropThumbnail";
 import UppyHiddenInput from "../components/UppyHiddenInput";
 import UppyError from "../components/UppyError";
 import UppyOfflineAlert from "../components/UppyOfflineAlert";
-import UppyFileType from "../definitions/UppyFileType";
-import UppyType from "../definitions/UppyType";
 
-type UploadSingleFileProps = TextProps;
+interface UploadSingleFileProps extends BaseUploadProps {
+    example?: boolean;
+}
 
-const UploadSingleFile = ({
-    // onChange,
-    fieldProps,
-    // eslint-disable-next-line
-    // TODO
-    // eslint-disable-next-line
-    validate: fieldValidate = (value: any, required: boolean) => {
-        if (required && !Yup.string().required().isValidSync(value)) {
-            return "validation.required";
-        }
+const UploadSingleFile = ({ example, ...baseUploadProps }: UploadSingleFileProps) => {
+    console.log("🚀 ~ file: UploadSingleFile.tsx ~ line 15 ~ UploadSingleFile ~ example", example);
 
-        return undefined;
-    },
-    ...field
-}: UploadSingleFileProps) => {
     return (
-        <Box {...{ sx: { display: "flex", flexDirection: "column", gap: 2, position: "relative" } }}>
-            <UppyHiddenInput {...{ inputRef, onInputChange, uppy, required, disabled, fileName }} />
-            <UppyPrettyInput
-                {...{
-                    inputRef: inputRef?.current,
-                    fileName,
-                    path,
-                    label,
-                    hasError,
-                    help,
-                    required,
-                    disabled,
-                    clear,
-                }}
-            />
-            <UppyProgress {...{ uppy }} />
-            <UppyError {...{ uppy, error }} />
-            <UppyOfflineAlert {...{ uppy, disabled }} />
-        </Box>
+        <BaseUpload {...baseUploadProps}>
+            {({
+                inputRef,
+                onInputChange,
+                fileName,
+                uppy,
+                path,
+                label,
+                hasError,
+                error,
+                help,
+                required,
+                disabled,
+                clear,
+            }) => (
+                <Box {...{ sx: { display: "flex", flexDirection: "column", gap: 2, position: "relative" } }}>
+                    <UppyHiddenInput {...{ inputRef, onInputChange, uppy, required, disabled, fileName }} />
+                    <UppyPrettyInput
+                        {...{
+                            inputRef,
+                            fileName,
+                            path,
+                            label,
+                            hasError,
+                            help,
+                            required,
+                            disabled,
+                            clear,
+                        }}
+                    />
+                    <UppyProgress {...{ uppy }} />
+                    <UppyError {...{ uppy, error }} />
+                    <UppyOfflineAlert {...{ uppy, disabled }} />
+                </Box>
+            )}
+        </BaseUpload>
     );
 };
 

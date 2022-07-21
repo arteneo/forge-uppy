@@ -5,9 +5,8 @@ import { useTranslation } from "react-i18next";
 import { Button, IconButton } from "@arteneo/forge";
 
 interface UppyPrettyInputProps {
-    inputRef: null | HTMLInputElement;
+    inputRef: React.RefObject<HTMLInputElement>;
     fileName?: string;
-    path: string;
     label?: React.ReactNode;
     hasError: boolean;
     placeholder?: string;
@@ -24,7 +23,6 @@ interface UppyPrettyInputProps {
 const UppyPrettyInput = ({
     inputRef,
     fileName,
-    path,
     label,
     hasError,
     placeholder,
@@ -37,8 +35,8 @@ const UppyPrettyInput = ({
     const { t } = useTranslation();
 
     const onClick = () => {
-        if (inputRef) {
-            inputRef.click();
+        if (inputRef?.current) {
+            inputRef.current.click();
         }
     };
 

@@ -7,9 +7,27 @@ import { useUppy } from "@uppy/react";
 import { FormikValues, FormikProps, useFormikContext, getIn } from "formik";
 import { FieldInterface, useForm } from "@arteneo/forge";
 import UppyType from "../definitions/UppyType";
+import UppyFileType from "../definitions/UppyFileType";
+
+interface BaseUploadChildrenProps {
+    inputRef: React.RefObject<HTMLInputElement>;
+    onInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    fileName?: string;
+    uppy: UppyType;
+    addFiles: (files: UppyFileType[]) => void;
+    name: string;
+    path: string;
+    label?: React.ReactNode;
+    hasError: boolean;
+    error?: string;
+    help?: React.ReactNode;
+    required: boolean;
+    disabled: boolean;
+    clear: () => void;
+}
 
 interface BaseUploadProps extends FieldInterface {
-    children: (required: boolean) => React.ReactNode;
+    children: (props: BaseUploadChildrenProps) => JSX.Element;
 }
 
 const BaseUpload = ({

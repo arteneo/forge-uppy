@@ -8,9 +8,9 @@
     "types": "dist/index.d.ts",
     "scripts": {
         "lint": "eslint 'src/**/*.{js,ts,tsx}'",
-        "dev": "webpack --mode development",
-        "watch": "webpack --watch --mode development",
-        "build": "webpack --mode production"
+        "dev": "webpack --mode --progress development",
+        "watch": "webpack --watch --progress --mode development",
+        "build": "webpack --progress --mode production"
     },
     "repository": {
         "type": "git",
