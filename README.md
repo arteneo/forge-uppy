@@ -1,5 +1,9 @@
 # Future plans
 
+When uploading an image and could not refresh token anymore via RefreshToken we get `401` and uppy error, but it is not shown in `UppyError` component.
+
+When using `UppySingleDragDropImage` and you cancel an upload, image should revert to previous one (or empty if it will be very hard to do). Probably the same case with `UppySingleInputFile`.
+
 `help` flag is not tested with `UppySingleDragDropImage`.
 
 Some kind of onChange prop for `BaseUpload` (which means `UppySingleDragDropImage` and `UppySingleFile` will also have it).
@@ -34,6 +38,62 @@ const options = {
 ```
 
 Note! Allowed file types will also be used in hidden file input (in `accept` HTML attribute). This means selecting a file from your PC will also be restricted (i.e. Chrome is actually hiding not accepted files).
+
+# Access and refresh tokens (JWT)
+
+We can pass additional options in `uppyTusOptions` to add access token to headers and use refresh token when needed.
+
+Example implementation in `utilities/uppy.tsx` as follows.
+
+```
+import { TusOptions } from "@uppy/tus";
+import { DetailedError } from "tus-js-client";
+import { getAccessToken, refreshAccessToken, updateLastAlive } from "~app/utilities/authenticationTokens";
+
+export const uppyTusOptions: TusOptions = {
+    async onBeforeRequest(req) {
+        const accessToken = await getAccessToken();
+        req.setHeader("Authorization", "Bearer " + accessToken);
+    },
+    onShouldRetry(err, retryAttempt, options, next) {
+        if ((err as DetailedError)?.originalResponse?.getStatus() === 401) {
+            return true;
+        }
+
+        return next(err);
+    },
+    async onAfterResponse(req, res) {
+        if (res.getStatus() === 401) {
+            await refreshAccessToken();
+            updateLastAlive();
+        }
+    },
+};
+```
+
+Explanation for internal functions:
+
+1. `getAccessToken` - Returns access token (as a string)
+2. `refreshAccessToken` - Refreshes access token using refresh token
+3. `updateLastAlive` - Application specific, can be used to keep alive session
+
+Example usage:
+
+```
+import React from "react";
+import { getFields } from "@arteneo/forge";
+import { UploadSingleDragDropImage } from "@arteneo/forge-uppy";
+import { uppyTusOptions } from "~app/utilities/uppy";
+
+type FieldName = "image";
+
+const fields = {
+    image: <UploadSingleDragDropImage {...{ uppyTusOptions }} />,
+};
+
+export default (names?: FieldName[]) => getFields<FieldName>(names, fields);
+export { FieldName };
+```
 
 # Translations
 
