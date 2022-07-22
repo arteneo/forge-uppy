@@ -9,9 +9,16 @@ import UppyOfflineAlert from "../components/UppyOfflineAlert";
 
 type UploadSingleDragDropImageProps = Omit<BaseUploadProps, "children">;
 
-const UploadSingleDragDropImage = ({ ...baseUploadProps }: UploadSingleDragDropImageProps) => {
+const UploadSingleDragDropImage = ({
+    uppyOptions = {
+        restrictions: {
+            allowedFileTypes: ["image/*"],
+        },
+    },
+    ...baseUploadProps
+}: UploadSingleDragDropImageProps) => {
     return (
-        <BaseUpload {...baseUploadProps}>
+        <BaseUpload {...{ uppyOptions, ...baseUploadProps }}>
             {({
                 inputRef,
                 onInputChange,

@@ -1,11 +1,12 @@
 import React from "react";
 import * as Yup from "yup";
-import Uppy, { UploadResult } from "@uppy/core";
-import Tus from "@uppy/tus";
+import Uppy, { UploadResult, UppyOptions } from "@uppy/core";
+import Tus, { TusOptions } from "@uppy/tus";
 import toArray from "@uppy/utils/lib/toArray";
 import { useUppy } from "@uppy/react";
 import { FormikValues, FormikProps, useFormikContext, getIn } from "formik";
 import { FieldInterface, useForm } from "@arteneo/forge";
+import { merge } from "lodash";
 import UppyType from "../definitions/UppyType";
 import UppyFileType from "../definitions/UppyFileType";
 
@@ -28,10 +29,16 @@ interface BaseUploadChildrenProps {
 
 interface BaseUploadProps extends FieldInterface {
     children: (props: BaseUploadChildrenProps) => JSX.Element;
+    uppyOptions?: UppyOptions;
+    uppyTusOptions?: TusOptions;
+    modifyUppy?: (uppy: UppyType) => void;
 }
 
 const BaseUpload = ({
     children,
+    uppyOptions = {},
+    uppyTusOptions = {},
+    modifyUppy,
     // eslint-disable-next-line
     validate: fieldValidate = (value: any, required: boolean) => {
         if (required && !Yup.string().required().isValidSync(value)) {
@@ -91,21 +98,21 @@ const BaseUpload = ({
         return null;
     }
 
-    // TODO Passing options
-    const options = {
-        meta: { type: "public" },
-        restrictions: { maxFileSize: 700 * 1024, maxNumberOfFiles: 1, allowedFileTypes: [".jpg"] },
-        autoProceed: true,
-        // TODO Determining debug mode
-        debug: true,
-    };
-
     const uppy: UppyType = useUppy(() => {
+        const defaultUppyOptions = {
+            restrictions: { maxNumberOfFiles: 1 },
+            autoProceed: true,
+            // TODO Determining debug mode
+            debug: true,
+        };
+        const options = merge(defaultUppyOptions, uppyOptions);
         const uppy = new Uppy(options);
 
-        uppy.use(Tus, {
+        const defaultUppyTusOptions = {
             endpoint: "/tus/upload",
-        });
+        };
+        const tusOptions = merge(defaultUppyTusOptions, uppyTusOptions);
+        uppy.use(Tus, tusOptions);
 
         uppy.on("file-added", (file) => {
             setFileName(file.name);
@@ -127,6 +134,10 @@ const BaseUpload = ({
                 uppy.cancelAll();
             }, 150);
         });
+
+        if (typeof modifyUppy !== "undefined") {
+            modifyUppy(uppy);
+        }
 
         return uppy;
     });

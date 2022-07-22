@@ -1,3 +1,9 @@
+# Future plans
+
+`help` flag is not tested with `UppySingleDragDropImage`.
+
+Some kind of onChange prop for `BaseUpload` (which means `UppySingleDragDropImage` and `UppySingleFile` will also have it).
+
 # Restrictions
 
 Uppy documentation: https://uppy.io/docs/uppy/#restrictions
