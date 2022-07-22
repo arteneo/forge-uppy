@@ -102,8 +102,6 @@ const BaseUpload = ({
         const defaultUppyOptions = {
             restrictions: { maxNumberOfFiles: 1 },
             autoProceed: true,
-            // TODO Determining debug mode
-            debug: true,
         };
         const options = merge(defaultUppyOptions, uppyOptions);
         const uppy = new Uppy(options);
