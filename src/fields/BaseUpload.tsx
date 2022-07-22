@@ -108,6 +108,7 @@ const BaseUpload = ({
 
         const defaultUppyTusOptions = {
             endpoint: "/tus/upload",
+            chunkSize: 5 * 1024 * 1024,
         };
         const tusOptions = merge(defaultUppyTusOptions, uppyTusOptions);
         uppy.use(Tus, tusOptions);
