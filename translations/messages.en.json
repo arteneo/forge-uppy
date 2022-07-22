@@ -1,0 +1,22 @@
+{
+    "uppy": {
+        "dragDrop": "Drag & drop or click here to upload a file",
+        "prettyInput": {
+            "textFileEmpty": "Click to choose a file",
+            "textFileEmptyDisabled": "No file",
+            "textFileName": "{{ fileName }}",
+            "clear": "Remove current file",
+            "button": "Click to choose a file"
+        },
+        "progress": {
+            "pause": "Pause upload",
+            "resume": "Resume upload",
+            "cancel": "Cancel upload"
+        },
+        "thumbnail": {
+            "missingImage": "No image"
+        },
+        "offlineAlert": "You are offline. Please check your connection",
+        "generalError": "Error occured during upload. Please try again"
+    }
+}

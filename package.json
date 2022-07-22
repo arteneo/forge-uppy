@@ -1,0 +1,83 @@
+{
+    "name": "@arteneo/forge-uppy",
+    "version": "2.0.3",
+    "description": "Forge Uppy",
+    "license": "MIT",
+    "author": "Arteneo",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "list": "npm list --depth=0",
+        "lint": "eslint 'src/**/*.{js,ts,tsx}'",
+        "dev": "webpack --mode --progress development",
+        "watch": "webpack --watch --progress --mode development",
+        "build": "webpack --progress --mode production"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/arteneo/forge-uppy.git"
+    },
+    "keywords": [
+        "Forge",
+        "Uppy"
+    ],
+    "bugs": {
+        "url": "https://github.com/arteneo/forge-uppy/issues"
+    },
+    "homepage": "https://github.com/arteneo/forge-uppy#readme",
+    "peerDependencies": {
+        "@arteneo/forge": "^2.0.0",
+        "@emotion/react": "^11.9.0",
+        "@emotion/styled": "^11.8.1",
+        "@mui/icons-material": "^5.8.0",
+        "@mui/material": "^5.8.0",
+        "@mui/system": "^5.8.0",
+        "@uppy/core": "^2.3.1",
+        "@uppy/react": "^2.2.2",
+        "@uppy/tus": "^2.4.1",
+        "formik": "^2.2.9",
+        "i18next": "^21.6.7",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-i18next": "^11.15.3",
+        "yup": "^0.32.11"
+    },
+    "devDependencies": {
+        "@emotion/react": "^11.9.0",
+        "@emotion/styled": "^11.8.1",
+        "@mui/icons-material": "^5.8.0",
+        "@mui/material": "^5.8.0",
+        "@mui/system": "^5.8.0",
+        "@types/node": "^17.0.10",
+        "@types/react": "^17.0.38",
+        "@types/react-dom": "^17.0.11",
+        "@types/webpack": "^5.28.0",
+        "@types/yup": "^0.29.13",
+        "@typescript-eslint/eslint-plugin": "^5.10.1",
+        "@typescript-eslint/parser": "^5.10.1",
+        "@uppy/core": "^2.3.1",
+        "@uppy/react": "^2.2.2",
+        "@uppy/tus": "^2.4.1",
+        "eslint": "^8.7.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-react": "^7.28.0",
+        "eslint-webpack-plugin": "^3.1.1",
+        "formik": "^2.2.9",
+        "i18next": "^21.6.7",
+        "lodash": "^4.17.21",
+        "prettier": "^2.5.1",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-i18next": "^11.15.3",
+        "ts-loader": "^9.2.6",
+        "ts-node": "^10.4.0",
+        "typescript": "^4.5.5",
+        "webpack": "^5.67.0",
+        "webpack-cli": "^4.9.1",
+        "yup": "^0.32.11"
+    },
+    "files": [
+        "/dist"
+    ]
+}
