@@ -7,6 +7,7 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
+        "list": "npm list --depth=0",
         "lint": "eslint 'src/**/*.{js,ts,tsx}'",
         "dev": "webpack --mode --progress development",
         "watch": "webpack --watch --progress --mode development",

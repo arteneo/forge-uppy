@@ -7,13 +7,9 @@ import UppyHiddenInput from "../components/UppyHiddenInput";
 import UppyError from "../components/UppyError";
 import UppyOfflineAlert from "../components/UppyOfflineAlert";
 
-interface UploadSingleFileProps extends BaseUploadProps {
-    example?: boolean;
-}
+type UploadSingleInputFileProps = Omit<BaseUploadProps, "children">;
 
-const UploadSingleFile = ({ example, ...baseUploadProps }: UploadSingleFileProps) => {
-    console.log("🚀 ~ file: UploadSingleFile.tsx ~ line 15 ~ UploadSingleFile ~ example", example);
-
+const UploadSingleInputFile = ({ ...baseUploadProps }: UploadSingleInputFileProps) => {
     return (
         <BaseUpload {...baseUploadProps}>
             {({
@@ -30,7 +26,7 @@ const UploadSingleFile = ({ example, ...baseUploadProps }: UploadSingleFileProps
                 disabled,
                 clear,
             }) => (
-                <Box {...{ sx: { display: "flex", flexDirection: "column", gap: 2, position: "relative" } }}>
+                <Box {...{ sx: { display: "flex", flexDirection: "column", gap: 1, position: "relative" } }}>
                     <UppyHiddenInput {...{ inputRef, onInputChange, uppy, required, disabled, fileName }} />
                     <UppyPrettyInput
                         {...{
@@ -54,5 +50,5 @@ const UploadSingleFile = ({ example, ...baseUploadProps }: UploadSingleFileProps
     );
 };
 
-export default UploadSingleFile;
-export { UploadSingleFileProps };
+export default UploadSingleInputFile;
+export { UploadSingleInputFileProps };

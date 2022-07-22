@@ -59,7 +59,8 @@ const UppyError = ({ uppy, error }: UppyErrorProps) => {
     }
 
     return (
-        <FormControl {...{ error: true }}>
+        // mt: -1 will mitigate gap used by wrapper component
+        <FormControl {...{ error: true, mt: -1 }}>
             <FormHelperText>{errorText}</FormHelperText>
         </FormControl>
     );

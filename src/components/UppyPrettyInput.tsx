@@ -15,9 +15,11 @@ interface UppyPrettyInputProps {
     disabled: boolean;
     clear: () => void;
     fieldProps?: TextFieldProps;
-    // TODO Text label?
-    // TODO clearIconButtonProps
-    // TODO buttonProps
+    textFileEmptyLabel?: string;
+    textFileEmptyDisabledLabel?: string;
+    textFileNameLabel?: string;
+    clearTooltip?: string;
+    buttonLabel?: string;
 }
 
 const UppyPrettyInput = ({
@@ -31,6 +33,11 @@ const UppyPrettyInput = ({
     help,
     clear,
     fieldProps,
+    textFileEmptyLabel = "uppy.prettyInput.textFileEmpty",
+    textFileEmptyDisabledLabel = "uppy.prettyInput.textFileEmptyDisabled",
+    textFileNameLabel = "uppy.prettyInput.textFileName",
+    clearTooltip = "uppy.prettyInput.clear",
+    buttonLabel = "uppy.prettyInput.button",
 }: UppyPrettyInputProps) => {
     const { t } = useTranslation();
 
@@ -40,14 +47,14 @@ const UppyPrettyInput = ({
         }
     };
 
-    let textValue = t("uppy.prettyInput.textFileEmpty");
+    let textValue = t(textFileEmptyLabel);
 
     if (disabled) {
-        textValue = t("uppy.prettyInput.textFileEmptyDisabled");
+        textValue = t(textFileEmptyDisabledLabel);
     }
 
     if (typeof fileName !== "undefined") {
-        textValue = t("uppy.prettyInput.textFileName", { fileName });
+        textValue = t(textFileNameLabel, { fileName });
     }
 
     const hasFile = typeof fileName !== "undefined" ? true : false;
@@ -76,7 +83,7 @@ const UppyPrettyInput = ({
                         <IconButton
                             {...{
                                 icon: <Close {...{ fontSize: "small" }} />,
-                                tooltip: "uppy.prettyInput.clear",
+                                tooltip: clearTooltip,
                                 color: "error",
                                 size: "small",
                                 onClick: () => clear(),
@@ -85,7 +92,7 @@ const UppyPrettyInput = ({
                     )}
                     <Button
                         {...{
-                            label: "uppy.prettyInput.button",
+                            label: buttonLabel,
                             variant: "outlined",
                             color: "primary",
                             size: "small",
