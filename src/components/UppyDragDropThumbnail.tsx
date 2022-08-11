@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, FormControl, FormLabel } from "@mui/material";
+import { Box, FormControl, FormHelperText, FormLabel } from "@mui/material";
 import UppyDragDrop, { UppyDragDropProps } from "./UppyDragDrop";
 import UppyThumbnail from "./UppyThumbnail";
 
@@ -8,6 +8,7 @@ interface UppyDragDropThumbnailProps extends UppyDragDropProps {
     path: string;
     label?: React.ReactNode;
     hasError: boolean;
+    help?: React.ReactNode;
     required: boolean;
     disabled: boolean;
 }
@@ -17,6 +18,7 @@ const UppyDragDropThumbnail = ({
     path,
     label,
     hasError,
+    help,
     required,
     disabled,
     uppy,
@@ -24,7 +26,8 @@ const UppyDragDropThumbnail = ({
 }: UppyDragDropThumbnailProps) => {
     return (
         <FormControl {...{ error: hasError, required, disabled }}>
-            <FormLabel {...{ sx: { mb: 1 } }}>{label}</FormLabel>
+            <FormLabel {...{ sx: { mb: help ? 0 : 1 } }}>{label}</FormLabel>
+            {help && <FormHelperText {...{ sx: { mb: 1, ml: 0, mt: 0 } }}>{help}</FormHelperText>}
             <Box
                 {...{
                     sx: {

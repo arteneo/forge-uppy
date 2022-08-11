@@ -29,13 +29,14 @@ const UploadSingleDragDropImage = ({
                 hasError,
                 error,
                 addFiles,
+                help,
                 required,
                 disabled,
             }) => (
                 <Box {...{ sx: { display: "flex", flexDirection: "column", gap: 1, position: "relative" } }}>
                     <UppyHiddenInput {...{ inputRef, onInputChange, uppy, required, disabled, fileName }} />
                     <UppyDragDropThumbnail
-                        {...{ inputRef, addFiles, uppy, label, hasError, required, disabled, path }}
+                        {...{ inputRef, addFiles, uppy, label, hasError, help, required, disabled, path }}
                     />
                     <UppyProgress {...{ uppy }} />
                     <UppyError {...{ uppy, error }} />
