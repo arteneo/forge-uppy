@@ -17,7 +17,22 @@ const UppyThumbnail = ({
     height,
     path,
     uppy,
-    getThumbnailSrc = (value: FormikValues) => (value ? "/" + value : undefined),
+    getThumbnailSrc = (value: FormikValues) => {
+        if (!value) {
+            return undefined;
+        }
+
+        if (typeof value !== "string") {
+            return undefined;
+        }
+
+        const absoluteUrlRegex = new RegExp("^(?:[a-z]+:)?//", "i");
+        if (absoluteUrlRegex.test(value)) {
+            return value;
+        }
+
+        return "/" + value;
+    },
 }: UppyThumbnailProps) => {
     const { t } = useTranslation();
     const { values }: FormikProps<FormikValues> = useFormikContext();
