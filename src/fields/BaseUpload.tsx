@@ -94,10 +94,6 @@ const BaseUpload = ({
         };
     }, [hidden, registerField, unregisterField, path, validate]);
 
-    if (hidden) {
-        return null;
-    }
-
     const uppy: UppyType = useUppy(() => {
         const defaultUppyOptions = {
             restrictions: { maxNumberOfFiles: 1 },
@@ -141,6 +137,10 @@ const BaseUpload = ({
 
         return uppy;
     });
+
+    if (hidden) {
+        return null;
+    }
 
     const addFiles = (files: UppyFileType[]) => {
         const descriptors = files.map((file) => ({
