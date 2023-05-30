@@ -8,6 +8,13 @@ When using `UppySingleDragDropImage` and you cancel an upload, image should reve
 
 Some kind of onChange prop for `BaseUpload` (which means `UppySingleDragDropImage` and `UppySingleFile` will also have it).
 
+# Branches
+
+You can use following branches:
+
+1. `main` (default) - branch for current version `3.x`
+2. `v2` - branch for version `2.x`
+
 # Restrictions
 
 Uppy documentation: https://uppy.io/docs/uppy/#restrictions
