@@ -47,7 +47,7 @@ const UppyError = ({ uppy, error }: UppyErrorProps) => {
     }
 
     if (uppyError) {
-        errorText = t("uppy.generalError");
+        errorText = t("uppy.generalError") ?? "";
     }
 
     if (uppyRestrictionError) {
