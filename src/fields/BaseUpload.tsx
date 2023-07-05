@@ -7,6 +7,7 @@ import { useUppy } from "@uppy/react";
 import { FormikValues, FormikProps, useFormikContext, getIn } from "formik";
 import { FieldInterface, useForm } from "@arteneo/forge";
 import { merge } from "lodash";
+import slugify from "@sindresorhus/slugify";
 import UppyType from "../definitions/UppyType";
 import UppyFileType from "../definitions/UppyFileType";
 
@@ -143,16 +144,22 @@ const BaseUpload = ({
     }
 
     const addFiles = (files: UppyFileType[]) => {
-        const descriptors = files.map((file) => ({
-            name: file.name,
-            type: file.type,
-            data: file,
-            meta: {
-                // path of the file relative to the ancestor directory the user selected.
-                // e.g. 'docs/Old Prague/airbnb.pdf'
-                relativePath: file.relativePath || null,
-            },
-        }));
+        const descriptors = files.map((file) => {
+            // Divide by dot and slugify each part independently
+            const filenameParts: string[] = (file.name ?? "").split(".");
+            const filename = filenameParts.map((filenamePart) => slugify(filenamePart)).join(".");
+
+            return {
+                name: filename,
+                type: file.type,
+                data: file,
+                meta: {
+                    // path of the file relative to the ancestor directory the user selected.
+                    // e.g. 'docs/Old Prague/airbnb.pdf'
+                    relativePath: file.relativePath || null,
+                },
+            };
+        });
 
         try {
             uppy.addFiles(descriptors);
