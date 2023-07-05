@@ -1,6 +1,6 @@
 {
     "name": "@arteneo/forge-uppy",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "Forge Uppy",
     "license": "MIT",
     "author": "Arteneo",
@@ -53,6 +53,7 @@
         "@mui/icons-material": "^5.11.16",
         "@mui/material": "^5.13.3",
         "@mui/system": "^5.13.2",
+        "@sindresorhus/slugify": "^2.2.1",
         "@types/node": "^20.2.5",
         "@types/react": "^18.2.7",
         "@types/react-dom": "^18.2.4",
