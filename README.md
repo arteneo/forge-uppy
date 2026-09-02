@@ -12,8 +12,10 @@ Some kind of onChange prop for `BaseUpload` (which means `UppySingleDragDropImag
 
 You can use following branches:
 
-1. `main` (default) - branch for current version `3.x`
-2. `v2` - branch for version `2.x`
+1. `main` (default) - Deprecated
+2. `v4` - branch for version `4.x`
+3. `v3` - branch for version `3.x`
+4. `v2` - branch for version `2.x`
 
 # Restrictions
 
