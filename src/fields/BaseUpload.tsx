@@ -2,14 +2,13 @@ import React from "react";
 import * as Yup from "yup";
 import Uppy, { UploadResult, UppyOptions } from "@uppy/core";
 import Tus, { TusOptions } from "@uppy/tus";
-import toArray from "@uppy/utils/lib/toArray";
 import { useUppy } from "@uppy/react";
 import { FormikValues, FormikProps, useFormikContext, getIn } from "formik";
 import { FieldInterface, useForm } from "@arteneo/forge";
 import { merge } from "lodash";
 import slugify from "@sindresorhus/slugify";
-import UppyType from "../definitions/UppyType";
-import UppyFileType from "../definitions/UppyFileType";
+import { type UppyType } from "../definitions/UppyType";
+import { type UppyFileType } from "../definitions/UppyFileType";
 
 interface BaseUploadChildrenProps {
     inputRef: React.RefObject<HTMLInputElement>;
@@ -175,7 +174,13 @@ const BaseUpload = ({
     };
 
     const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = toArray(event.target.files);
+        const fileList = event.target.files;
+        let files: File[] = [];
+
+        if (fileList !== null) {
+            files = Array.from(fileList);
+        }
+
         if (files.length > 0) {
             uppy.log("[DragDrop] Files selected through input");
             addFiles(files);
@@ -209,5 +214,4 @@ const BaseUpload = ({
     });
 };
 
-export default BaseUpload;
-export { BaseUploadProps };
+export { BaseUpload, type BaseUploadProps };

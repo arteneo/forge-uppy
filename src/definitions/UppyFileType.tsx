@@ -3,4 +3,4 @@
 // eslint-disable-next-line
 type UppyFileType = any;
 
-export default UppyFileType;
+export { type UppyFileType };

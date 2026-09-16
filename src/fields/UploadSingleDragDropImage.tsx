@@ -1,11 +1,10 @@
-import React from "react";
 import { Box } from "@mui/material";
-import BaseUpload, { BaseUploadProps } from "../fields/BaseUpload";
-import UppyProgress from "../components/UppyProgress";
-import UppyDragDropThumbnail from "../components/UppyDragDropThumbnail";
-import UppyHiddenInput from "../components/UppyHiddenInput";
-import UppyError from "../components/UppyError";
-import UppyOfflineAlert from "../components/UppyOfflineAlert";
+import { BaseUpload, type BaseUploadProps } from "../fields/BaseUpload";
+import { UppyProgress } from "../components/UppyProgress";
+import { UppyHiddenInput } from "../components/UppyHiddenInput";
+import { UppyError } from "../components/UppyError";
+import { UppyOfflineAlert } from "../components/UppyOfflineAlert";
+import { UppyDragDropThumbnail } from "../components/UppyDragDropThumbnail";
 
 type UploadSingleDragDropImageProps = Omit<BaseUploadProps, "children">;
 
@@ -47,5 +46,4 @@ const UploadSingleDragDropImage = ({
     );
 };
 
-export default UploadSingleDragDropImage;
-export { UploadSingleDragDropImageProps };
+export { UploadSingleDragDropImage, type UploadSingleDragDropImageProps };

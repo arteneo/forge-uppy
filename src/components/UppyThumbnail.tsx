@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Box, Typography } from "@mui/material";
 import { FormikValues, FormikProps, useFormikContext, getIn } from "formik";
 import ThumbnailGenerator from "@uppy/thumbnail-generator";
-import UppyType from "../definitions/UppyType";
+import { UppyType } from "../definitions/UppyType";
 
 interface UppyThumbnailProps {
     // Height is required to show image in proper scale via CSS
@@ -103,5 +103,4 @@ const UppyThumbnail = ({
     );
 };
 
-export default UppyThumbnail;
-export { UppyThumbnailProps };
+export { UppyThumbnail, type UppyThumbnailProps };

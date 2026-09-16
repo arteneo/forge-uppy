@@ -1,20 +1,39 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
-        "module": "CommonJS",
-        "target": "ES6",
-        "lib": ["es6", "dom", "es2017"],
-        "declaration": true,
-        "sourceMap": true,
-        "allowSyntheticDefaultImports": true,
-        "outDir": "./dist",
-        "jsx": "react",
-        "moduleResolution": "node",
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "noImplicitAny": false,
+        /* Type Checking */
+        "target": "ES2020",
+        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "jsx": "react-jsx",
+
+        /* Strictness */
         "strict": true,
-        "types": ["node"]
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+
+        /* Declarations */
+        "declaration": true,
+        "declarationMap": true,
+        "emitDeclarationOnly": true,
+        "rootDir": ".",
+        "outDir": "./dist",
+
+        /* Interop & Module Handling */
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true,
+
+        /* Vite/bundler-specific */
+        // TODO Migrate to true when possible
+        "verbatimModuleSyntax": false,
+        "noEmit": false
     },
-    "include": ["src/**/*"]
+    "include": ["src"]
 }

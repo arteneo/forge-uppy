@@ -1,47 +1,21 @@
-// > components
-import { default as UppyDragDrop, UppyDragDropProps } from "./components/UppyDragDrop";
-export { UppyDragDrop, UppyDragDropProps };
+// > ./components
+export { UppyDragDrop, type UppyDragDropProps } from "./components/UppyDragDrop";
+export { UppyDragDropThumbnail, type UppyDragDropThumbnailProps } from "./components/UppyDragDropThumbnail";
+export { UppyError, type UppyErrorProps } from "./components/UppyError";
+export { UppyHiddenInput, type UppyHiddenInputProps } from "./components/UppyHiddenInput";
+export { UppyOfflineAlert, type UppyOfflineAlertProps } from "./components/UppyOfflineAlert";
+export { UppyPrettyInput, type UppyPrettyInputProps } from "./components/UppyPrettyInput";
+export { UppyProgress, type UppyProgressProps } from "./components/UppyProgress";
+export { UppyThumbnail, type UppyThumbnailProps } from "./components/UppyThumbnail";
+// < ./components
 
-import { default as UppyDragDropThumbnail, UppyDragDropThumbnailProps } from "./components/UppyDragDropThumbnail";
-export { UppyDragDropThumbnail, UppyDragDropThumbnailProps };
+// > ./definitions
+export { type UppyFileType } from "./definitions/UppyFileType";
+export { type UppyType } from "./definitions/UppyType";
+// < ./definitions
 
-import { default as UppyError, UppyErrorProps } from "./components/UppyError";
-export { UppyError, UppyErrorProps };
-
-import { default as UppyHiddenInput, UppyHiddenInputProps } from "./components/UppyHiddenInput";
-export { UppyHiddenInput, UppyHiddenInputProps };
-
-import { default as UppyOfflineAlert, UppyOfflineAlertProps } from "./components/UppyOfflineAlert";
-export { UppyOfflineAlert, UppyOfflineAlertProps };
-
-import { default as UppyPrettyInput, UppyPrettyInputProps } from "./components/UppyPrettyInput";
-export { UppyPrettyInput, UppyPrettyInputProps };
-
-import { default as UppyProgress, UppyProgressProps } from "./components/UppyProgress";
-export { UppyProgress, UppyProgressProps };
-
-import { default as UppyThumbnail, UppyThumbnailProps } from "./components/UppyThumbnail";
-export { UppyThumbnail, UppyThumbnailProps };
-// < components
-
-// > definitions
-import { default as UppyFileType } from "./definitions/UppyFileType";
-export { UppyFileType };
-
-import { default as UppyType } from "./definitions/UppyType";
-export { UppyType };
-// < definitions
-
-// > fields
-import { default as BaseUpload, BaseUploadProps } from "./fields/BaseUpload";
-export { BaseUpload, BaseUploadProps };
-
-import {
-    default as UploadSingleDragDropImage,
-    UploadSingleDragDropImageProps,
-} from "./fields/UploadSingleDragDropImage";
-export { UploadSingleDragDropImage, UploadSingleDragDropImageProps };
-
-import { default as UploadSingleInputFile, UploadSingleInputFileProps } from "./fields/UploadSingleInputFile";
-export { UploadSingleInputFile, UploadSingleInputFileProps };
-// < fields
+// > ./fields
+export { BaseUpload, type BaseUploadProps } from "./fields/BaseUpload";
+export { UploadSingleDragDropImage, type UploadSingleDragDropImageProps } from "./fields/UploadSingleDragDropImage";
+export { UploadSingleInputFile, type UploadSingleInputFileProps } from "./fields/UploadSingleInputFile";
+// < ./fields

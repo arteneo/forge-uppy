@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import UppyType from "../definitions/UppyType";
+import { type UppyType } from "../definitions/UppyType";
 
 interface UppyHiddenInputProps {
     inputRef: React.RefObject<HTMLInputElement>;
@@ -41,5 +41,4 @@ const UppyHiddenInput = ({ inputRef, onInputChange, uppy, required, disabled, fi
     );
 };
 
-export default UppyHiddenInput;
-export { UppyHiddenInputProps };
+export { UppyHiddenInput, type UppyHiddenInputProps };

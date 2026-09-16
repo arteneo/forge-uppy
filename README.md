@@ -1,13 +1,3 @@
-# Future plans
-
-When uploading an image and could not refresh token anymore via RefreshToken we get `401` and uppy error, but it is not shown in `UppyError` component.
-
-When using `UppySingleDragDropImage` and you cancel an upload, image should revert to previous one (or empty if it will be very hard to do). Probably the same case with `UppySingleInputFile`.
-
-`help` flag is not tested with `UppySingleDragDropImage`.
-
-Some kind of onChange prop for `BaseUpload` (which means `UppySingleDragDropImage` and `UppySingleFile` will also have it).
-
 # Branches
 
 You can use following branches:
@@ -16,6 +6,58 @@ You can use following branches:
 2. `v4` - branch for version `4.x`
 3. `v3` - branch for version `3.x`
 4. `v2` - branch for version `2.x`
+
+# Prerequisite
+
+Install dependencies using `npm install`.
+
+# Development
+
+Run `npm run dev` to run typechecking using typescript and linting using oxlint (executes once, there is no watch capabilities, use VSC extension `Oxc` instead).
+
+Run `npm run format:check` to run formatter.
+
+In case you would like to run them separately use:
+
+- `npm run tsc` for typechecking using typescript
+- `npm run lint:check` linting using oxlint
+
+You can also run `npm run test` to run tests once. `npm run test:watch` re-runs tests as they change.
+
+You can also run `npm run lint:fix` to fix most of the issues reported by `oxlint`.
+You can also run `npm run format:fix` to fix most of the issues reported by `oxfmt`.
+
+Notice! `npm run lint:check` still reports a few errors, they should be fixed as soon as time allows.
+
+# Workflow
+
+1. Create issue on github
+2. Create branch `i-X` where `X` is issue number
+3. Change source code according to needs of created issue
+4. Run `npm run dev`
+5. Run `npm run test`
+6. Commit with prefix `#X` where `X` is issue number and push changes
+7. Create merge request from `i-X` to selected version branch
+8. Code review merge request
+
+# Publishing new version
+
+1. Introduce changes according to `Workflow`
+2. After approval merge changes in merge requests that should be introduced in upcoming version
+3. Checkout to selected version branch and pull newest changes
+4. Update `version` in `package.json`
+5. Build package using `npm run build`
+6. Commit with message `Production release vMAJOR.MINOR.PATCH` and push changes
+7. Publish package using `npm publish`
+
+# Including development build in your project
+
+You can use `npm pack` to easily include development build into your project. This may be helpful to developing or testing new components and updating or introducing new dependencies within the library.
+
+1. Run `npm run build`
+2. Run `npm pack`
+3. File should be created i.e. `arteneo-forge-uppy-4.0.1.tgz`
+4. In your project run `npm install arteneo-forge-uppy-4.0.1.tgz --no-audit --verbose`. This will include current build into your project. Option `--no-audit` is helpful in making the process quicker. Option `--verbose` simply provides more information
 
 # Restrictions
 

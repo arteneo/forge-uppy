@@ -2,7 +2,7 @@ import React from "react";
 import { Box, LinearProgress, Typography } from "@mui/material";
 import { Cancel, PauseCircle, PlayCircle } from "@mui/icons-material";
 import { IconButton } from "@arteneo/forge";
-import UppyType from "../definitions/UppyType";
+import { type UppyType } from "../definitions/UppyType";
 
 interface UppyProgressProps {
     uppy: UppyType;
@@ -85,5 +85,4 @@ const UppyProgress = ({ uppy }: UppyProgressProps) => {
     );
 };
 
-export default UppyProgress;
-export { UppyProgressProps };
+export { UppyProgress, type UppyProgressProps };

@@ -1,8 +1,8 @@
 import React from "react";
 import { FormControl, FormHelperText } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import UppyType from "../definitions/UppyType";
-import UppyFileType from "../definitions/UppyFileType";
+import { type UppyType } from "../definitions/UppyType";
+import { type UppyFileType } from "../definitions/UppyFileType";
 
 interface UppyErrorProps {
     uppy: UppyType;
@@ -66,5 +66,4 @@ const UppyError = ({ uppy, error }: UppyErrorProps) => {
     );
 };
 
-export default UppyError;
-export { UppyErrorProps };
+export { UppyError, type UppyErrorProps };

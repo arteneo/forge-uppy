@@ -2,8 +2,8 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import getDroppedFiles from "@uppy/utils/lib/getDroppedFiles";
 import { Box, Typography } from "@mui/material";
-import UppyFileType from "../definitions/UppyFileType";
-import UppyType from "../definitions/UppyType";
+import { type UppyFileType } from "../definitions/UppyFileType";
+import { type UppyType } from "../definitions/UppyType";
 
 interface UppyDragDropProps {
     inputRef: React.RefObject<HTMLInputElement>;
@@ -94,5 +94,4 @@ const UppyDragDrop = ({ inputRef, addFiles, disabled, uppy }: UppyDragDropProps)
     );
 };
 
-export default UppyDragDrop;
-export { UppyDragDropProps };
+export { UppyDragDrop, type UppyDragDropProps };

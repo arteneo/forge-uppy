@@ -110,5 +110,4 @@ const UppyPrettyInput = ({
     return <MuiTextField {...mergedFieldProps} />;
 };
 
-export default UppyPrettyInput;
-export { UppyPrettyInputProps };
+export { UppyPrettyInput, type UppyPrettyInputProps };
