@@ -1,7 +1,7 @@
 import { type FieldInterface, useForm } from "@arteneo/forge";
 import slugify from "@sindresorhus/slugify";
-import Uppy, { type UploadResult, type UppyOptions } from "@uppy/core";
-import Tus, { type TusOptions } from "@uppy/tus";
+import Uppy, { type Meta } from "@uppy/core";
+import Tus, { type TusOpts } from "@uppy/tus";
 import { type FormikValues, type FormikProps, useFormikContext, getIn } from "formik";
 import { merge } from "lodash";
 import React from "react";
@@ -10,6 +10,10 @@ import * as Yup from "yup";
 import { type UppyFileType } from "../definitions/UppyFileType";
 import { type UppyType } from "../definitions/UppyType";
 import { UppyContextProvider } from "@uppy/react";
+import type { UppyOptions } from "../definitions/UppyOptions";
+import type { TusOptions } from "../definitions/TusOptions";
+import type { UppyUploadResult } from "../definitions/UppyUploadResult";
+import type { Body } from "@uppy/core";
 
 interface BaseUploadChildrenProps {
     inputRef: React.RefObject<HTMLInputElement>;
@@ -30,8 +34,8 @@ interface BaseUploadChildrenProps {
 
 interface BaseUploadProps extends FieldInterface {
     children: (props: BaseUploadChildrenProps) => JSX.Element;
-    uppyOptions?: UppyOptions;
-    uppyTusOptions?: TusOptions;
+    uppyOptions?: Partial<UppyOptions>;
+    uppyTusOptions?: Partial<TusOptions>;
     modifyUppy?: (uppy: UppyType) => void;
 }
 
@@ -95,18 +99,19 @@ const BaseUpload = ({
             limit: 1,
         };
         const tusOptions = merge(defaultUppyTusOptions, uppyTusOptions);
-        uppy.use(Tus, tusOptions);
+        uppy.use(Tus, tusOptions as TusOpts<Meta, Body>);
 
         uppy.on("file-added", (file) => {
             setFileName(file.name);
         });
 
-        uppy.on("complete", (result: UploadResult) => {
-            if (result.successful.length > 0) {
-                const parts = result.successful[0]?.uploadURL.split("/");
-                setFileName(result.successful[0]?.name);
+        uppy.on("complete", (result: UppyUploadResult) => {
+            const uploadResult = result.successful?.[0];
+            if (typeof uploadResult !== "undefined") {
+                const parts = uploadResult.uploadURL?.split("/");
+                setFileName(uploadResult.name);
                 // Last element of array is a TUS token
-                setFieldValue(path, parts?.slice(-1)[0]);
+                void setFieldValue(path, parts?.slice(-1)[0]);
             }
 
             // Any errors are handled by UI components via event subscribers
@@ -171,7 +176,7 @@ const BaseUpload = ({
     const clear = () => {
         uppy.cancelAll();
         setFileName(undefined);
-        setFieldValue(path, "");
+        void setFieldValue(path, "");
     };
 
     const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

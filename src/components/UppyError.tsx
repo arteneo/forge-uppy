@@ -47,7 +47,7 @@ const UppyError = ({ uppy, error }: UppyErrorProps) => {
             uppy.off("cancel-all", onCancelAll);
             uppy.off("restriction-failed", onRestrictionFailed);
         };
-    }, []);
+    }, [uppy]);
 
     let errorText: undefined | string = undefined;
     if (error) {

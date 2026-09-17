@@ -15,19 +15,18 @@ const UppyOfflineAlert = ({ uppy, disabled }: UppyOfflineAlertProps) => {
     const [offline, setOffline] = React.useState(false);
 
     React.useEffect(() => {
+        const onIsOffline = () => setOffline(true);
+        const onIsOnline = () => setOffline(false);
+
         // Both is-offline and is-online events are not documented by Uppy but they seem to work correctly
-        uppy.on("is-offline", () => {
-            setOffline(true);
-        });
-        uppy.on("is-online", () => {
-            setOffline(false);
-        });
+        uppy.on("is-offline", onIsOffline);
+        uppy.on("is-online", onIsOnline);
 
         return () => {
-            uppy.off("is-offline");
-            uppy.off("is-online");
+            uppy.off("is-offline", onIsOffline);
+            uppy.off("is-online", onIsOnline);
         };
-    }, []);
+    }, [uppy]);
 
     if (disabled) {
         return null;

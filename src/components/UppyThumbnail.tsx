@@ -48,16 +48,11 @@ const UppyThumbnail = ({
             waitForThumbnailsBeforeUpload: false,
         });
 
-        uppy.on("thumbnail:generated", (_file: unknown, preview: string) => setSrc(preview));
+        const onThumbnailGenerated = (_file: unknown, preview: string) => setSrc(preview);
+        uppy.on("thumbnail:generated", onThumbnailGenerated);
 
-        return () => uppy.off("thumbnail:generated");
-    }, []);
-
-    React.useEffect(() => {
-        if (!value) {
-            setSrc(undefined);
-        }
-    }, [value]);
+        return () => uppy.off("thumbnail:generated", onThumbnailGenerated);
+    }, [uppy, height]);
 
     return (
         <Box
@@ -75,7 +70,7 @@ const UppyThumbnail = ({
                 },
             }}
         >
-            {typeof src !== "undefined" ? (
+            {value && src ? (
                 <Box
                     {...{
                         sx: {
