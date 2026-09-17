@@ -27,7 +27,7 @@ const UppyError = ({ uppy, error }: UppyErrorProps) => {
         uppy.on("file-added", () => clearErrors());
         uppy.on("file-removed", () => clearErrors());
         uppy.on("cancel-all", () => clearErrors());
-        uppy.on("restriction-failed", (file: UppyFileType, error: Error) => {
+        uppy.on("restriction-failed", (_file: UppyFileType, error: Error) => {
             setUppyRestrictionError(error.message);
         });
 

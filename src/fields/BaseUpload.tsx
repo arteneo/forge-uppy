@@ -1,10 +1,10 @@
 import React from "react";
 import * as Yup from "yup";
-import Uppy, { UploadResult, UppyOptions } from "@uppy/core";
-import Tus, { TusOptions } from "@uppy/tus";
+import Uppy, { type UploadResult, type UppyOptions } from "@uppy/core";
+import Tus, { type TusOptions } from "@uppy/tus";
 import { useUppy } from "@uppy/react";
-import { FormikValues, FormikProps, useFormikContext, getIn } from "formik";
-import { FieldInterface, useForm } from "@arteneo/forge";
+import { type FormikValues, type FormikProps, useFormikContext, getIn } from "formik";
+import { type FieldInterface, useForm } from "@arteneo/forge";
 import { merge } from "lodash";
 import slugify from "@sindresorhus/slugify";
 import { type UppyType } from "../definitions/UppyType";
@@ -116,10 +116,10 @@ const BaseUpload = ({
 
         uppy.on("complete", (result: UploadResult) => {
             if (result.successful.length > 0) {
-                const parts = result.successful[0].uploadURL.split("/");
-                setFileName(result.successful[0].name);
+                const parts = result.successful[0]?.uploadURL.split("/");
+                setFileName(result.successful[0]?.name);
                 // Last element of array is a TUS token
-                setFieldValue(path, parts.slice(-1)[0]);
+                setFieldValue(path, parts?.slice(-1)[0]);
             }
 
             // Any errors are handled by UI components via event subscribers

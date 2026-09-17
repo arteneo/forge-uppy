@@ -1,5 +1,5 @@
 import React from "react";
-import { InputAdornment, TextField as MuiTextField, TextFieldProps } from "@mui/material";
+import { InputAdornment, TextField as MuiTextField, type TextFieldProps } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 import { Button, IconButton } from "@arteneo/forge";

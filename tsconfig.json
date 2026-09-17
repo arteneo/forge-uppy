@@ -31,8 +31,7 @@
         "skipLibCheck": true,
 
         /* Vite/bundler-specific */
-        // TODO Migrate to true when possible
-        "verbatimModuleSyntax": false,
+        "verbatimModuleSyntax": true,
         "noEmit": false
     },
     "include": ["src"]
