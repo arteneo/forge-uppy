@@ -3,9 +3,9 @@
 You can use following branches:
 
 1. `main` (default) - Deprecated
-2. `v4` - branch for version `4.x`
-3. `v3` - branch for version `3.x`
-4. `v2` - branch for version `2.x`
+2. `v4` - branch for version `4.x` (React 18 and Uppy 3 with Vite which ships ESM build)
+3. `v3` - branch for version `3.x` (React 18 and Uppy 3 with webpack which ships UMD build)
+4. `v2` - branch for version `2.x` (React 17 and Uppy 3 with webpack which ships UMD build)
 
 # Prerequisite
 
