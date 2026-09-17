@@ -1,4 +1,5 @@
 import { type UploadResult } from "@uppy/core";
+
 import { type UppyBody } from "./UppyBody";
 import { type UppyMeta } from "./UppyMeta";
 

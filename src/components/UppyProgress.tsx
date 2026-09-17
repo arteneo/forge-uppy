@@ -1,9 +1,9 @@
 import { IconButton } from "@arteneo/forge";
 import { Cancel, PauseCircle, PlayCircle } from "@mui/icons-material";
 import { Box, LinearProgress, Typography } from "@mui/material";
+import { useUppyState } from "@uppy/react";
 
 import { type UppyType } from "../definitions/UppyType";
-import { useUppyState } from "@uppy/react";
 
 interface UppyProgressProps {
     uppy: UppyType;
