@@ -70,10 +70,10 @@ const UppyPrettyInput = ({
         ...fieldProps,
         inputProps: {
             onClick: hasFile || disabled ? undefined : onClick,
-            ...(fieldProps?.inputProps ?? {}),
+            ...fieldProps?.inputProps,
             sx: {
                 cursor: hasFile || disabled ? undefined : "pointer",
-                ...(fieldProps?.inputProps?.sx ?? {}),
+                ...fieldProps?.inputProps?.sx,
             },
         },
         InputProps: {
@@ -101,7 +101,7 @@ const UppyPrettyInput = ({
                     />
                 </InputAdornment>
             ) : undefined,
-            ...(fieldProps?.InputProps ?? {}),
+            ...fieldProps?.InputProps,
         },
     };
 
