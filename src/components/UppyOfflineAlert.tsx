@@ -1,7 +1,8 @@
-import React from "react";
 import { Alert } from "@mui/material";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import UppyType from "../definitions/UppyType";
+
+import { type UppyType } from "../definitions/UppyType";
 
 interface UppyOfflineAlertProps {
     uppy: UppyType;
@@ -39,5 +40,4 @@ const UppyOfflineAlert = ({ uppy, disabled }: UppyOfflineAlertProps) => {
     return <Alert {...{ severity: "error" }}>{t("uppy.offlineAlert")}</Alert>;
 };
 
-export default UppyOfflineAlert;
-export { UppyOfflineAlertProps };
+export { UppyOfflineAlert, type UppyOfflineAlertProps };

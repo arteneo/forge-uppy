@@ -1,9 +1,10 @@
+import { Box, Typography } from "@mui/material";
+import ThumbnailGenerator from "@uppy/thumbnail-generator";
+import { type FormikValues, type FormikProps, useFormikContext, getIn } from "formik";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Box, Typography } from "@mui/material";
-import { FormikValues, FormikProps, useFormikContext, getIn } from "formik";
-import ThumbnailGenerator from "@uppy/thumbnail-generator";
-import UppyType from "../definitions/UppyType";
+
+import { type UppyType } from "../definitions/UppyType";
 
 interface UppyThumbnailProps {
     // Height is required to show image in proper scale via CSS
@@ -47,7 +48,7 @@ const UppyThumbnail = ({
             waitForThumbnailsBeforeUpload: false,
         });
 
-        uppy.on("thumbnail:generated", (file: unknown, preview: string) => setSrc(preview));
+        uppy.on("thumbnail:generated", (_file: unknown, preview: string) => setSrc(preview));
 
         return () => uppy.off("thumbnail:generated");
     }, []);
@@ -103,5 +104,4 @@ const UppyThumbnail = ({
     );
 };
 
-export default UppyThumbnail;
-export { UppyThumbnailProps };
+export { UppyThumbnail, type UppyThumbnailProps };

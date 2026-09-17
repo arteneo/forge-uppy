@@ -1,8 +1,8 @@
-import React from "react";
-import { InputAdornment, TextField as MuiTextField, TextFieldProps } from "@mui/material";
-import { Close } from "@mui/icons-material";
-import { useTranslation } from "react-i18next";
 import { Button, IconButton } from "@arteneo/forge";
+import { Close } from "@mui/icons-material";
+import { InputAdornment, TextField as MuiTextField, type TextFieldProps } from "@mui/material";
+import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface UppyPrettyInputProps {
     inputRef: React.RefObject<HTMLInputElement>;
@@ -70,10 +70,10 @@ const UppyPrettyInput = ({
         ...fieldProps,
         inputProps: {
             onClick: hasFile || disabled ? undefined : onClick,
-            ...(fieldProps?.inputProps ?? {}),
+            ...fieldProps?.inputProps,
             sx: {
                 cursor: hasFile || disabled ? undefined : "pointer",
-                ...(fieldProps?.inputProps?.sx ?? {}),
+                ...fieldProps?.inputProps?.sx,
             },
         },
         InputProps: {
@@ -101,7 +101,7 @@ const UppyPrettyInput = ({
                     />
                 </InputAdornment>
             ) : undefined,
-            ...(fieldProps?.InputProps ?? {}),
+            ...fieldProps?.InputProps,
         },
     };
 
@@ -110,5 +110,4 @@ const UppyPrettyInput = ({
     return <MuiTextField {...mergedFieldProps} />;
 };
 
-export default UppyPrettyInput;
-export { UppyPrettyInputProps };
+export { UppyPrettyInput, type UppyPrettyInputProps };

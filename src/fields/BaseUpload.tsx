@@ -1,15 +1,15 @@
+import { type FieldInterface, useForm } from "@arteneo/forge";
+import slugify from "@sindresorhus/slugify";
+import Uppy, { type UploadResult, type UppyOptions } from "@uppy/core";
+import { useUppy } from "@uppy/react";
+import Tus, { type TusOptions } from "@uppy/tus";
+import { type FormikValues, type FormikProps, useFormikContext, getIn } from "formik";
+import { merge } from "lodash";
 import React from "react";
 import * as Yup from "yup";
-import Uppy, { UploadResult, UppyOptions } from "@uppy/core";
-import Tus, { TusOptions } from "@uppy/tus";
-import toArray from "@uppy/utils/lib/toArray";
-import { useUppy } from "@uppy/react";
-import { FormikValues, FormikProps, useFormikContext, getIn } from "formik";
-import { FieldInterface, useForm } from "@arteneo/forge";
-import { merge } from "lodash";
-import slugify from "@sindresorhus/slugify";
-import UppyType from "../definitions/UppyType";
-import UppyFileType from "../definitions/UppyFileType";
+
+import { type UppyFileType } from "../definitions/UppyFileType";
+import { type UppyType } from "../definitions/UppyType";
 
 interface BaseUploadChildrenProps {
     inputRef: React.RefObject<HTMLInputElement>;
@@ -117,10 +117,10 @@ const BaseUpload = ({
 
         uppy.on("complete", (result: UploadResult) => {
             if (result.successful.length > 0) {
-                const parts = result.successful[0].uploadURL.split("/");
-                setFileName(result.successful[0].name);
+                const parts = result.successful[0]?.uploadURL.split("/");
+                setFileName(result.successful[0]?.name);
                 // Last element of array is a TUS token
-                setFieldValue(path, parts.slice(-1)[0]);
+                setFieldValue(path, parts?.slice(-1)[0]);
             }
 
             // Any errors are handled by UI components via event subscribers
@@ -175,7 +175,13 @@ const BaseUpload = ({
     };
 
     const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = toArray(event.target.files);
+        const fileList = event.target.files;
+        let files: File[] = [];
+
+        if (fileList !== null) {
+            files = Array.from(fileList);
+        }
+
         if (files.length > 0) {
             uppy.log("[DragDrop] Files selected through input");
             addFiles(files);
@@ -209,5 +215,4 @@ const BaseUpload = ({
     });
 };
 
-export default BaseUpload;
-export { BaseUploadProps };
+export { BaseUpload, type BaseUploadProps };

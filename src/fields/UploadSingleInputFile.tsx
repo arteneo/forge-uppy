@@ -1,11 +1,11 @@
-import React from "react";
 import { Box } from "@mui/material";
-import BaseUpload, { BaseUploadProps } from "../fields/BaseUpload";
-import UppyProgress from "../components/UppyProgress";
-import UppyPrettyInput from "../components/UppyPrettyInput";
-import UppyHiddenInput from "../components/UppyHiddenInput";
-import UppyError from "../components/UppyError";
-import UppyOfflineAlert from "../components/UppyOfflineAlert";
+
+import { UppyError } from "../components/UppyError";
+import { UppyHiddenInput } from "../components/UppyHiddenInput";
+import { UppyOfflineAlert } from "../components/UppyOfflineAlert";
+import { UppyPrettyInput } from "../components/UppyPrettyInput";
+import { UppyProgress } from "../components/UppyProgress";
+import { BaseUpload, type BaseUploadProps } from "../fields/BaseUpload";
 
 type UploadSingleInputFileProps = Omit<BaseUploadProps, "children">;
 
@@ -50,5 +50,4 @@ const UploadSingleInputFile = ({ ...baseUploadProps }: UploadSingleInputFileProp
     );
 };
 
-export default UploadSingleInputFile;
-export { UploadSingleInputFileProps };
+export { UploadSingleInputFile, type UploadSingleInputFileProps };

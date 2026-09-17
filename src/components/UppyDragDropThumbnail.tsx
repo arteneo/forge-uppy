@@ -1,7 +1,8 @@
-import React from "react";
 import { Box, FormControl, FormHelperText, FormLabel } from "@mui/material";
-import UppyDragDrop, { UppyDragDropProps } from "./UppyDragDrop";
-import UppyThumbnail from "./UppyThumbnail";
+import React from "react";
+
+import { UppyDragDrop, type UppyDragDropProps } from "./UppyDragDrop";
+import { UppyThumbnail } from "./UppyThumbnail";
 
 interface UppyDragDropThumbnailProps extends UppyDragDropProps {
     height?: number;
@@ -45,5 +46,4 @@ const UppyDragDropThumbnail = ({
     );
 };
 
-export default UppyDragDropThumbnail;
-export { UppyDragDropThumbnailProps };
+export { UppyDragDropThumbnail, type UppyDragDropThumbnailProps };

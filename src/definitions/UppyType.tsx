@@ -3,4 +3,4 @@
 // eslint-disable-next-line
 type UppyType = any;
 
-export default UppyType;
+export { type UppyType };
