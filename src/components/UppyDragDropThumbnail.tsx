@@ -1,5 +1,6 @@
-import React from "react";
 import { Box, FormControl, FormHelperText, FormLabel } from "@mui/material";
+import React from "react";
+
 import { UppyDragDrop, type UppyDragDropProps } from "./UppyDragDrop";
 import { UppyThumbnail } from "./UppyThumbnail";
 

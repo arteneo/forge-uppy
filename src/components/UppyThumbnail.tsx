@@ -1,8 +1,9 @@
+import { Box, Typography } from "@mui/material";
+import ThumbnailGenerator from "@uppy/thumbnail-generator";
+import { type FormikValues, type FormikProps, useFormikContext, getIn } from "formik";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Box, Typography } from "@mui/material";
-import { type FormikValues, type FormikProps, useFormikContext, getIn } from "formik";
-import ThumbnailGenerator from "@uppy/thumbnail-generator";
+
 import { type UppyType } from "../definitions/UppyType";
 
 interface UppyThumbnailProps {

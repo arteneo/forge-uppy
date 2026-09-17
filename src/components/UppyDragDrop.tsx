@@ -1,7 +1,8 @@
+import { Box, Typography } from "@mui/material";
+import getDroppedFiles from "@uppy/utils/lib/getDroppedFiles";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import getDroppedFiles from "@uppy/utils/lib/getDroppedFiles";
-import { Box, Typography } from "@mui/material";
+
 import { type UppyFileType } from "../definitions/UppyFileType";
 import { type UppyType } from "../definitions/UppyType";
 

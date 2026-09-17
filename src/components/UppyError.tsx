@@ -1,8 +1,9 @@
-import React from "react";
 import { FormControl, FormHelperText } from "@mui/material";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import { type UppyType } from "../definitions/UppyType";
+
 import { type UppyFileType } from "../definitions/UppyFileType";
+import { type UppyType } from "../definitions/UppyType";
 
 interface UppyErrorProps {
     uppy: UppyType;

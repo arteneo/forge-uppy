@@ -1,8 +1,8 @@
-import React from "react";
-import { InputAdornment, TextField as MuiTextField, type TextFieldProps } from "@mui/material";
-import { Close } from "@mui/icons-material";
-import { useTranslation } from "react-i18next";
 import { Button, IconButton } from "@arteneo/forge";
+import { Close } from "@mui/icons-material";
+import { InputAdornment, TextField as MuiTextField, type TextFieldProps } from "@mui/material";
+import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface UppyPrettyInputProps {
     inputRef: React.RefObject<HTMLInputElement>;

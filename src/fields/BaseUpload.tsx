@@ -1,14 +1,15 @@
+import { type FieldInterface, useForm } from "@arteneo/forge";
+import slugify from "@sindresorhus/slugify";
+import Uppy, { type UploadResult, type UppyOptions } from "@uppy/core";
+import { useUppy } from "@uppy/react";
+import Tus, { type TusOptions } from "@uppy/tus";
+import { type FormikValues, type FormikProps, useFormikContext, getIn } from "formik";
+import { merge } from "lodash";
 import React from "react";
 import * as Yup from "yup";
-import Uppy, { type UploadResult, type UppyOptions } from "@uppy/core";
-import Tus, { type TusOptions } from "@uppy/tus";
-import { useUppy } from "@uppy/react";
-import { type FormikValues, type FormikProps, useFormikContext, getIn } from "formik";
-import { type FieldInterface, useForm } from "@arteneo/forge";
-import { merge } from "lodash";
-import slugify from "@sindresorhus/slugify";
-import { type UppyType } from "../definitions/UppyType";
+
 import { type UppyFileType } from "../definitions/UppyFileType";
+import { type UppyType } from "../definitions/UppyType";
 
 interface BaseUploadChildrenProps {
     inputRef: React.RefObject<HTMLInputElement>;
