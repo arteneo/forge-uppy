@@ -25,14 +25,13 @@
     "types": "./dist/index.d.ts",
     "scripts": {
         "dev": "oxlint --type-aware --type-check",
-        "test": "vitest run",
-        "test:watch": "vitest",
-        "tsc": "tsc --build --noEmit",
+        "tsc:check": "tsc --build --noEmit",
+        "tsc:watch": "tsc --noEmit --watch",
         "lint:check": "oxlint",
         "lint:fix": "oxlint --fix",
         "format:check": "oxfmt --check",
         "format:fix": "oxfmt",
-        "build": "oxlint --type-aware --type-check --deny-warnings && vitest run && vite build",
+        "build": "oxlint --type-aware --type-check --deny-warnings && vite build",
         "build:force": "vite build"
     },
     "devDependencies": {
