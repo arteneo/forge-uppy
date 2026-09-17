@@ -19,13 +19,12 @@ Run `npm run format:check` to run formatter.
 
 In case you would like to run them separately use:
 
-- `npm run tsc` for typechecking using typescript
+- `npm run tsc:check` for typechecking using typescript
 - `npm run lint:check` linting using oxlint
-
-You can also run `npm run test` to run tests once. `npm run test:watch` re-runs tests as they change.
 
 You can also run `npm run lint:fix` to fix most of the issues reported by `oxlint`.
 You can also run `npm run format:fix` to fix most of the issues reported by `oxfmt`.
+You can also run `npm run tsc:watch` to watch for issues reported by `tsc`.
 
 Notice! `npm run lint:check` still reports a few errors, they should be fixed as soon as time allows.
 
