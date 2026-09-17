@@ -48,6 +48,7 @@ Notice! `npm run lint:check` still reports a few errors, they should be fixed as
 5. Build package using `npm run build`
 6. Commit with message `Production release vMAJOR.MINOR.PATCH` and push changes
 7. Publish package using `npm publish`
+8. Create release on github
 
 # Including development build in your project
 
