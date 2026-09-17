@@ -23,22 +23,29 @@ const UppyError = ({ uppy, error }: UppyErrorProps) => {
     };
 
     React.useEffect(() => {
-        uppy.on("error", () => setUppyError(true));
-        uppy.on("upload-error", () => setUppyError(true));
-        uppy.on("file-added", () => clearErrors());
-        uppy.on("file-removed", () => clearErrors());
-        uppy.on("cancel-all", () => clearErrors());
-        uppy.on("restriction-failed", (_file: UppyFileType, error: Error) => {
+        const onError = () => setUppyError(true);
+        const onUploadError = () => setUppyError(true);
+        const onFileAdded = () => clearErrors();
+        const onFileRemoved = () => clearErrors();
+        const onCancelAll = () => clearErrors();
+        const onRestrictionFailed = (_file: UppyFileType, error: Error) => {
             setUppyRestrictionError(error.message);
-        });
+        };
+
+        uppy.on("error", onError);
+        uppy.on("upload-error", onUploadError);
+        uppy.on("file-added", onFileAdded);
+        uppy.on("file-removed", onFileRemoved);
+        uppy.on("cancel-all", onCancelAll);
+        uppy.on("restriction-failed", onRestrictionFailed);
 
         return () => {
-            uppy.off("error");
-            uppy.off("upload-error");
-            uppy.off("file-added");
-            uppy.off("file-removed");
-            uppy.off("cancel-all");
-            uppy.off("restriction-failed");
+            uppy.off("error", onError);
+            uppy.off("upload-error", onUploadError);
+            uppy.off("file-added", onFileAdded);
+            uppy.off("file-removed", onFileRemoved);
+            uppy.off("cancel-all", onCancelAll);
+            uppy.off("restriction-failed", onRestrictionFailed);
         };
     }, []);
 

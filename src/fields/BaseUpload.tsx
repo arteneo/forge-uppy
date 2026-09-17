@@ -1,7 +1,6 @@
 import { type FieldInterface, useForm } from "@arteneo/forge";
 import slugify from "@sindresorhus/slugify";
 import Uppy, { type UploadResult, type UppyOptions } from "@uppy/core";
-import { useUppy } from "@uppy/react";
 import Tus, { type TusOptions } from "@uppy/tus";
 import { type FormikValues, type FormikProps, useFormikContext, getIn } from "formik";
 import { merge } from "lodash";
@@ -10,6 +9,7 @@ import * as Yup from "yup";
 
 import { type UppyFileType } from "../definitions/UppyFileType";
 import { type UppyType } from "../definitions/UppyType";
+import { UppyContextProvider } from "@uppy/react";
 
 interface BaseUploadChildrenProps {
     inputRef: React.RefObject<HTMLInputElement>;
@@ -81,21 +81,7 @@ const BaseUpload = ({
     const inputRef = React.useRef<HTMLInputElement>(null);
     const [fileName, setFileName] = React.useState<undefined | string>(getInitialFileName());
 
-    React.useEffect(() => {
-        if (hidden || typeof validate === "undefined") {
-            return;
-        }
-
-        registerField(path, {
-            validate: () => validate,
-        });
-
-        return () => {
-            unregisterField(path);
-        };
-    }, [hidden, registerField, unregisterField, path, validate]);
-
-    const uppy: UppyType = useUppy(() => {
+    const [uppy] = React.useState(() => {
         const defaultUppyOptions = {
             restrictions: { maxNumberOfFiles: 1 },
             autoProceed: true,
@@ -138,6 +124,20 @@ const BaseUpload = ({
 
         return uppy;
     });
+
+    React.useEffect(() => {
+        if (hidden || typeof validate === "undefined") {
+            return;
+        }
+
+        registerField(path, {
+            validate: () => validate,
+        });
+
+        return () => {
+            unregisterField(path);
+        };
+    }, [hidden, registerField, unregisterField, path, validate]);
 
     if (hidden) {
         return null;
@@ -197,22 +197,26 @@ const BaseUpload = ({
         event.target.value = null as unknown as string;
     };
 
-    return children({
-        inputRef,
-        onInputChange,
-        fileName,
-        uppy,
-        addFiles,
-        name,
-        path,
-        label,
-        hasError,
-        error,
-        help,
-        required,
-        disabled,
-        clear,
-    });
+    return (
+        <UppyContextProvider uppy={uppy}>
+            {children({
+                inputRef,
+                onInputChange,
+                fileName,
+                uppy,
+                addFiles,
+                name,
+                path,
+                label,
+                hasError,
+                error,
+                help,
+                required,
+                disabled,
+                clear,
+            })}
+        </UppyContextProvider>
+    );
 };
 
 export { BaseUpload, type BaseUploadProps };
