@@ -32,6 +32,10 @@ const UppyThumbnail = ({
             return value;
         }
 
+        if ((value as string).startsWith("/")) {
+            return value;
+        }
+
         return "/" + value;
     },
 }: UppyThumbnailProps) => {
