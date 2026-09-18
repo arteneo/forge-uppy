@@ -105,6 +105,7 @@ const UppyPrettyInput = ({
         },
     };
 
+    // eslint-disable-next-line react-hooks/refs
     const mergedFieldProps = Object.assign(internalFieldProps, fieldProps);
 
     return <MuiTextField {...mergedFieldProps} />;

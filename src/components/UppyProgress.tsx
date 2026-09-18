@@ -1,7 +1,7 @@
 import { IconButton } from "@arteneo/forge";
 import { Cancel, PauseCircle, PlayCircle } from "@mui/icons-material";
 import { Box, LinearProgress, Typography } from "@mui/material";
-import React from "react";
+import { useUppyState } from "@uppy/react";
 
 import { type UppyType } from "../definitions/UppyType";
 
@@ -10,37 +10,14 @@ interface UppyProgressProps {
 }
 
 const UppyProgress = ({ uppy }: UppyProgressProps) => {
-    const [totalProgress, setTotalProgress] = React.useState<undefined | number>(undefined);
-    const [paused, setPaused] = React.useState(false);
+    const totalProgress = useUppyState(uppy, (state) => state.totalProgress);
+    const currentUploads = useUppyState(uppy, (state) => state.currentUploads);
+    const files = useUppyState(uppy, (state) => state.files);
 
-    React.useEffect(() => {
-        uppy.on("file-added", () => setTotalProgress(0));
-        uppy.on("file-removed", () => setTotalProgress(undefined));
-        uppy.on("progress", (progress: number) => setTotalProgress(progress));
+    const isUploading = Object.keys(currentUploads).length > 0;
+    const isPaused = Object.values(files).some((file) => file.isPaused);
 
-        return () => {
-            uppy.off("file-added");
-            uppy.off("file-removed");
-            uppy.off("progress");
-        };
-    }, []);
-
-    const pause = () => {
-        uppy.pauseAll();
-        setPaused(true);
-    };
-
-    const resume = () => {
-        uppy.resumeAll();
-        setPaused(false);
-    };
-
-    const cancel = () => {
-        uppy.cancelAll();
-        setPaused(false);
-    };
-
-    if (typeof totalProgress === "undefined" || totalProgress === 100) {
+    if (!isUploading) {
         return null;
     }
 
@@ -48,17 +25,17 @@ const UppyProgress = ({ uppy }: UppyProgressProps) => {
         <Box {...{ display: "grid", gridTemplateColumns: "1fr 40px 66px", gap: 1, alignItems: "center" }}>
             <LinearProgress {...{ variant: "determinate", value: totalProgress }} />
             <Box {...{ display: "flex", textAlign: "center" }}>
-                <Typography>{totalProgress} %</Typography>
+                <Typography {...{ whiteSpace: "nowrap" }}>{totalProgress} %</Typography>
             </Box>
             <Box {...{ display: "flex" }}>
-                {paused ? (
+                {isPaused ? (
                     <IconButton
                         {...{
                             icon: <PlayCircle {...{ fontSize: "small" }} />,
                             size: "small",
                             color: "success",
                             tooltip: "uppy.progress.resume",
-                            onClick: () => resume(),
+                            onClick: () => uppy.resumeAll(),
                         }}
                     />
                 ) : (
@@ -68,7 +45,7 @@ const UppyProgress = ({ uppy }: UppyProgressProps) => {
                             size: "small",
                             color: "warning",
                             tooltip: "uppy.progress.pause",
-                            onClick: () => pause(),
+                            onClick: () => uppy.pauseAll(),
                         }}
                     />
                 )}
@@ -78,7 +55,7 @@ const UppyProgress = ({ uppy }: UppyProgressProps) => {
                         size: "small",
                         color: "error",
                         tooltip: "uppy.progress.cancel",
-                        onClick: () => cancel(),
+                        onClick: () => uppy.cancelAll(),
                     }}
                 />
             </Box>

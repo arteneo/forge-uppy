@@ -14,7 +14,7 @@ const UploadSingleDragDropImage = ({
         restrictions: {
             allowedFileTypes: ["image/*"],
         },
-    },
+    } as UploadSingleDragDropImageProps["uppyOptions"],
     ...baseUploadProps
 }: UploadSingleDragDropImageProps) => {
     return (

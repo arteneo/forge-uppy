@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import getDroppedFiles from "@uppy/utils/lib/getDroppedFiles";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
@@ -15,7 +14,7 @@ interface UppyDragDropProps {
 
 let draggingOverTimeout: ReturnType<typeof setTimeout>;
 
-const UppyDragDrop = ({ inputRef, addFiles, disabled, uppy }: UppyDragDropProps) => {
+const UppyDragDrop = ({ inputRef, addFiles, disabled, uppy: _uppy }: UppyDragDropProps) => {
     const { t } = useTranslation();
     const [draggingOver, setDraggingOver] = React.useState(false);
 
@@ -35,10 +34,8 @@ const UppyDragDrop = ({ inputRef, addFiles, disabled, uppy }: UppyDragDropProps)
 
         setDraggingOver(false);
 
-        const logDropError = (error: string) => {
-            uppy.log(error, "error");
-        };
-        getDroppedFiles(event.dataTransfer, { logDropError }).then((files) => addFiles(files));
+        const files = Array.from(event.dataTransfer.files);
+        addFiles(files);
     };
 
     const onDragOver = (event: React.DragEvent<HTMLDivElement>) => {

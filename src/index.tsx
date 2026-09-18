@@ -10,8 +10,13 @@ export { UppyThumbnail, type UppyThumbnailProps } from "./components/UppyThumbna
 // < ./components
 
 // > ./definitions
+export { type TusOptions } from "./definitions/TusOptions";
+export { type UppyBody } from "./definitions/UppyBody";
 export { type UppyFileType } from "./definitions/UppyFileType";
+export { type UppyMeta } from "./definitions/UppyMeta";
+export { type UppyOptions } from "./definitions/UppyOptions";
 export { type UppyType } from "./definitions/UppyType";
+export { type UppyUploadResult } from "./definitions/UppyUploadResult";
 // < ./definitions
 
 // > ./fields
